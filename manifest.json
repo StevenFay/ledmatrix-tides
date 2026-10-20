@@ -1,0 +1,48 @@
+{
+  "id": "tides",
+  "name": "Tides (Queensland)",
+  "version": "1.0.0",
+  "author": "StevenFay",
+  "description": "Tide times for a Queensland beach: animated water level, today's highs and lows, a 24-hour chart and moon/tide stats. Maritime Safety Queensland predictions from data.qld.gov.au, with a time and height correction for beaches between gauges. Set up for Woodgate Beach.",
+  "entry_point": "manager.py",
+  "class_name": "TidesPlugin",
+  "category": "weather",
+  "tags": [
+    "tide",
+    "ocean",
+    "queensland",
+    "australia",
+    "coastal",
+    "marine",
+    "fishing"
+  ],
+  "display_modes": [
+    "tides_current",
+    "tides_schedule",
+    "tides_chart",
+    "tides_stats"
+  ],
+  "compatible_versions": [
+    ">=2.0.0"
+  ],
+  "update_interval": 300,
+  "default_duration": 12,
+  "icon": "fa-water",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/StevenFay/ledmatrix-tides",
+  "repo": "https://github.com/StevenFay/ledmatrix-tides",
+  "config_schema": "config_schema.json",
+  "last_updated": "2026-10-20",
+  "stars": 0,
+  "downloads": 0,
+  "verified": false,
+  "screenshot": "",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "released": "2026-10-20",
+      "ledmatrix_min_version": "2.0.0",
+      "notes": "First release, based on ChuckBuilds' tide-display 1.3.5 (ledmatrix-plugins d43e302). NOAA is replaced by Maritime Safety Queensland's predicted high/low waters (data.qld.gov.au), downloaded once per year and kept on the Pi; the curve between highs and lows is a half cosine. Site time and height corrections, metres and AEST by default, display modes tides_current / tides_schedule / tides_chart / tides_stats so it can run beside Tide Display. Burnett Heads 2026 is bundled."
+    }
+  ]
+}

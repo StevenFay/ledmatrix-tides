@@ -1,0 +1,10 @@
+{
+  "_comment": "Woodgate Beach on the bundled Burnett Heads 2026 predictions, frozen at 04:00 UTC on 20 Oct 2026 (2pm in Brisbane, the tide rising to a 4:25pm high). No network: the year's file is in data/.",
+  "config": {
+    "enabled": true,
+    "gauge": "burnett-heads",
+    "station_name": "Woodgate Beach",
+    "units": "metric"
+  },
+  "freeze_time": "2026-10-20 04:00:00"
+}

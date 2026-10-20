@@ -1,0 +1,281 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tides Configuration",
+  "description": "Tide times for a Queensland beach from Maritime Safety Queensland's predictions. Defaults to Woodgate Beach on the Burnett Heads gauge.",
+  "type": "object",
+  "x-propertyOrder": [
+    "enabled",
+    "station_name",
+    "gauge",
+    "time_offset_minutes",
+    "height_offset_m",
+    "units",
+    "display_duration",
+    "show_current",
+    "show_schedule",
+    "show_chart",
+    "show_stats",
+    "show_moon_phase",
+    "tide_color",
+    "highlight_color",
+    "customization"
+  ],
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable or disable the Tide Display plugin"
+    },
+    "gauge": {
+      "type": "string",
+      "title": "Tide gauge",
+      "description": "The Maritime Safety Queensland gauge the predictions come from: the dataset name on data.qld.gov.au without '-tide-gauge-predicted-high-low-data'. burnett-heads is the nearest to Woodgate; urangan is Hervey Bay.",
+      "default": "burnett-heads",
+      "pattern": "^[a-z0-9-]*$",
+      "examples": [
+        "burnett-heads",
+        "urangan",
+        "bundaberg",
+        "mooloolaba",
+        "brisbane-bar"
+      ]
+    },
+    "time_offset_minutes": {
+      "type": "number",
+      "title": "Time correction (minutes)",
+      "description": "Added to the gauge's tide times for your beach. Negative is earlier. 0 shows the gauge's own times.",
+      "default": 0,
+      "minimum": -180,
+      "maximum": 180
+    },
+    "height_offset_m": {
+      "type": "number",
+      "title": "Height correction (metres)",
+      "description": "Added to the gauge's heights for your beach.",
+      "default": 0,
+      "minimum": -3,
+      "maximum": 3
+    },
+    "station_name": {
+      "type": "string",
+      "title": "Place name",
+      "description": "Name shown on the board.",
+      "default": "Woodgate Beach",
+      "maxLength": 20,
+      "x-placeholder": "e.g. Woodgate Beach"
+    },
+    "units": {
+      "type": "string",
+      "title": "Units",
+      "enum": [
+        "metric",
+        "imperial"
+      ],
+      "enumNames": [
+        "Metric (metres)",
+        "Imperial (feet)"
+      ],
+      "default": "metric",
+      "description": "Metres or feet. Heights are above Lowest Astronomical Tide."
+    },
+    "display_duration": {
+      "type": "number",
+      "title": "Seconds per Mode",
+      "default": 12,
+      "minimum": 5,
+      "maximum": 60,
+      "description": "How many seconds to show each display mode before rotating to the next",
+      "x-advanced": true
+    },
+    "show_current": {
+      "type": "boolean",
+      "title": "Show Current Level Screen",
+      "default": true,
+      "description": "Show the full-display animated water level screen with tide direction and next tides"
+    },
+    "show_schedule": {
+      "type": "boolean",
+      "title": "Show Schedule Screen",
+      "default": true,
+      "description": "Show today's high/low tide schedule in columns"
+    },
+    "show_chart": {
+      "type": "boolean",
+      "title": "Show Chart Screen",
+      "default": true,
+      "description": "Show the 24-hour tide curve chart with current-time marker"
+    },
+    "show_stats": {
+      "type": "boolean",
+      "title": "Show Stats Screen",
+      "default": true,
+      "description": "Show the moon phase, spring/neap, and tidal range stats screen"
+    },
+    "show_moon_phase": {
+      "type": "boolean",
+      "title": "Show Moon Phase",
+      "default": true,
+      "description": "Show moon phase icon and name on the stats screen",
+      "x-advanced": true
+    },
+    "tide_color": {
+      "type": "array",
+      "title": "Water Color",
+      "x-widget": "color-picker",
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 255
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "default": [
+        0,
+        100,
+        200
+      ],
+      "description": "RGB color for tide water fill [R, G, B]",
+      "x-advanced": true
+    },
+    "highlight_color": {
+      "type": "array",
+      "title": "Highlight / Wave Color",
+      "x-widget": "color-picker",
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 255
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "default": [
+        0,
+        220,
+        255
+      ],
+      "description": "RGB color for wave crests and chart line [R, G, B]",
+      "x-advanced": true
+    },
+    "customization": {
+      "type": "object",
+      "title": "Display Customization",
+      "description": "Customize fonts and colors for tide text elements. Water and wave colors are set by Water Color and Highlight / Wave Color above.",
+      "properties": {
+        "tide_text": {
+          "type": "object",
+          "title": "Tide Text",
+          "description": "Font settings for the main tide readouts (direction, heights, times, stats). Color applies to neutral text only; high/low and rising/falling text keeps its status colors.",
+          "properties": {
+            "font": {
+              "type": "string",
+              "title": "Font Family",
+              "description": "Select the font to use",
+              "enum": [
+                "4x6-font.ttf",
+                "PressStart2P-Regular.ttf",
+                "5by7.regular.ttf",
+                "5x7.bdf",
+                "4x6.bdf"
+              ],
+              "default": "4x6-font.ttf",
+              "x-advanced": true
+            },
+            "font_size": {
+              "type": "integer",
+              "title": "Font Size",
+              "description": "Font size in pixels",
+              "minimum": 4,
+              "maximum": 16,
+              "default": 7,
+              "x-advanced": true
+            },
+            "text_color": {
+              "type": "array",
+              "title": "Text Color",
+              "description": "Text color (RGB)",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              },
+              "minItems": 3,
+              "maxItems": 3,
+              "default": [
+                205,
+                225,
+                255
+              ]
+            }
+          },
+          "x-propertyOrder": [
+            "font",
+            "font_size",
+            "text_color"
+          ],
+          "additionalProperties": false
+        },
+        "label_text": {
+          "type": "object",
+          "title": "Labels",
+          "description": "Font settings for secondary labels (station name, chart time axis, percentages)",
+          "properties": {
+            "font": {
+              "type": "string",
+              "title": "Font Family",
+              "description": "Select the font to use",
+              "enum": [
+                "4x6-font.ttf",
+                "PressStart2P-Regular.ttf",
+                "5by7.regular.ttf",
+                "5x7.bdf",
+                "4x6.bdf"
+              ],
+              "default": "4x6-font.ttf",
+              "x-advanced": true
+            },
+            "font_size": {
+              "type": "integer",
+              "title": "Font Size",
+              "description": "Font size in pixels",
+              "minimum": 4,
+              "maximum": 16,
+              "default": 7,
+              "x-advanced": true
+            },
+            "text_color": {
+              "type": "array",
+              "title": "Text Color",
+              "description": "Text color (RGB)",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              },
+              "minItems": 3,
+              "maxItems": 3,
+              "default": [
+                120,
+                150,
+                200
+              ]
+            }
+          },
+          "x-propertyOrder": [
+            "font",
+            "font_size",
+            "text_color"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "x-propertyOrder": [
+        "tide_text",
+        "label_text"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "enabled"
+  ]
+}
